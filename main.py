@@ -177,7 +177,7 @@ def handler_jual(message):
         
         stok_baru = update_stock(produk, qty)
  
-        balasan = f"Terjual: {produk} x{qty} @Rp{harga:,.0f} = Rp{total:,.0f}"
+        balasan = f"Terjual: {produk} x{qty} @Rp{harga:,.0f} = Rp{total:,.0f}".replace(",", ".")
         if stok_baru is not None:
             balasan += f"\nSisa stok: {stok_baru}"
             if stok_baru <= STOK_MINIMAL:
@@ -251,7 +251,7 @@ def compute_recap(df: pd.DataFrame) -> dict:
 def text_recap(rekap: dict) -> str:
     text = [
         "Rekap Penjualan",
-        f"Total omset: Rp{rekap['total_omset']:,.0f}",
+        f"Total omset: Rp{rekap['total_omset']:,.0f}".replace(",", "."),
         f"Total item terjual: {int(rekap['total_item_terjual'])}",
         f"Jumlah transaksi: {rekap['jumlah_transaksi']}",
         "",
